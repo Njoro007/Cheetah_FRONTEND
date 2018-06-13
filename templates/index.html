@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Smart Distribution
+{% endblock %}
+
+{% block body %}
+<div id="mapid" style="width: 1020px; height: 350px;"></div>
+<!-- <img src="images/map.jpg"> -->
+</div>
+<div class="row border-between">
+<div class="col-md-6">
+		<h1>Pans <a href="{{ url_for('waterpans') }}"><button class="btn btn-sm btn-primary">View All</button></a></h1>
+	<p>A Pan<strong><b><a href="{{ url_for('apan')}}"><button class="btn btn-sm btn-success">View</button></a><a href="{{url_for('editpan')}}"><button class="btn btn-sm btn-info">Update</button></a><a href="#"><button class="btn btn-sm btn-danger">Deactivate</button></a></b></strong></p>
+</div>	
+<div class="col-md-6">
+	<h1>Proposals <a href="{{ url_for('proposals') }}"><button class="btn btn-sm btn-primary">View All</button></a></h1>
+	<p>A Proposal<strong><b><a href="{{ url_for('apan')}}"><button class="btn btn-sm btn-success">Active</button></a><a href="#"><button class="btn btn-sm btn-danger">Reject</button></a></b></strong></p>
+</div>
+
+</div>
+{% endblock %}
