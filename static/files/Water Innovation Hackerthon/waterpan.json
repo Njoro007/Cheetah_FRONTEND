@@ -1,0 +1,9 @@
+{
+    "id": "1",
+    "name": "pan1",
+    "location_id": "1",
+    "user_id": "1",
+    "status": "active",
+    "capacity_id": "1",
+    "price_id": "price"
+}

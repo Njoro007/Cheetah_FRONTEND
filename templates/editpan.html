@@ -9,15 +9,15 @@ Edit waterpan
 	<form action="#" method="post">
 		<div class="form-group">
 			<label><strong>Pan Name</strong></label>
-			<input class="form-control" type="text" name="name" placeholder="pan name">	
+			<input class="form-control" type="text" name="name" placeholder="pan name" value="{{data['name']}}">	
 		</div>
 		<div class="form-group">
 			<label><strong>Pan Manager</strong></label>
-			<input class="form-control" type="text" name="manager" placeholder="manager">	
+			<input class="form-control" type="text" name="manager" placeholder="manager" value="{{data['manager']}}">	
 		</div>
 		<div class="form-group">
 			<label><strong>Capacity</strong></label>
-			<input class="form-control" type="number" name="capacity" placeholder="capacity">	
+			<input class="form-control" type="number" name="capacity" placeholder="capacity" value="{{data['capacity']}}">	
 		</div>
 		<button class="btn btn-primary" type="submit">Update</button>
 	</form>

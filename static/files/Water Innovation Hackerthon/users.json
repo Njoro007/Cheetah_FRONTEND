@@ -1,0 +1,9 @@
+{
+    "id": "1",
+    "fname": "John",
+    "lname": "doe",
+    "phone": "0700123456789",
+    "date_added": "2018/06/12",
+    "status": "active",
+    "role": "1"
+}
