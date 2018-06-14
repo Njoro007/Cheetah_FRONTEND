@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Pans
+{% endblock %}
+
+{% block body %}
+<div class="container">		
+	</div>
+	<div class="text-right">
+		<a href="{{ url_for('addpan')}}"><button class="btn btn-sm btn-success">Add</button></a></button>
+	</div>
+      <div>
+
+          <table class="table table-hover">
+              <tr>
+                <td>Name</td>
+                <td>Location</td>
+                <td>Status</td>
+                <td>Mananger</td>
+                 <td>Actions</td>
+              </tr>
+
+			<tbody>
+              <td><strong><b>{{data['name']}}</b></strong></td>
+			  <td><strong><b>{{location['name']}}</b></strong></td>
+              <td><strong><b>{{data['status']}}</b></strong></td>
+              <td><strong><b>manager</b></strong></td>
+              <td><strong><b><a href="apan/{{ data['name'] }}"><button class="btn btn-sm btn-success">View</button></a><a href="{{url_for('editpan')}}"><button class="btn btn-sm btn-info">Update</button></a><a href="#"><button class="btn btn-sm btn-danger">Deactivate</button></a></b></strong></td>
+           </tbody>
+
+          </table>
+      </div>
+
+    </div>
+{% endblock %}

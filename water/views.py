@@ -1,28 +1,8 @@
 from flask import Flask, render_template, redirect, request, url_for, json, session
 import os
-from functools import wraps
 
-app = Flask(__name__)
+from water import *
 
-app.config['SECRET_KEY'] = 'zyxwvutsrqponmlkj'
-
-app.debug = True
-
-
-def login_required(f):
-    """
-    Decorate routes to require login.
-
-    http://flask.pocoo.org/docs/0.11/patterns/viewdecorators/
-    """
-    @wraps(f)
-    def decorated_function(*args, **kwargs):
-        if session.get("username") is None:
-            return redirect(url_for("login", next=request.url))
-        return f(*args, **kwargs)
-    return decorated_function
-
-# root
 @app.route('/')
 @login_required
 def index():
@@ -42,7 +22,13 @@ def proposals():
 @app.route("/waterpans")
 @login_required
 def waterpans():
-	return render_template("waterpans.html")
+	# load local json for water pans
+    SITE_ROOT = os.path.realpath(os.path.dirname(__file__))
+    json_url = os.path.join(SITE_ROOT, "static/files", "waterpan.json")
+    data = json.load(open(json_url))
+    json_url_location = os.path.join(SITE_ROOT, "static/files", "location.json")
+    location = json.load(open(json_url_location))
+    return render_template("waterpans.html", data=data, location=location)
 
 
 @app.route("/apan/<string:name>", methods=['GET'])
@@ -50,9 +36,16 @@ def waterpans():
 def apan(name):
 	# load local json for water pans
 	SITE_ROOT = os.path.realpath(os.path.dirname(__file__))
-	json_url = os.path.join(SITE_ROOT, "static/files", "waterpan.json")
+	json_url = os.path.join(SITE_ROOT, "static/files", "capacity.json")
 	data = json.load(open(json_url))
-	return render_template("apan.html", name=name)
+	json_url_location = os.path.join(SITE_ROOT, "static/files", "location.json")
+	location = json.load(open(json_url_location))
+	json_url_pan = os.path.join(SITE_ROOT, "static/files", "waterpan.json")
+	waterpan = json.load(open(json_url_pan))
+	json_url_user = os.path.join(SITE_ROOT, "static/files", "users.json")
+	user = json.load(open(json_url_user))
+
+	return render_template("apan.html", name=name, data=data, location=location, waterpan=waterpan, user=user)
 
 @app.route("/addpan", methods=["POST", "GET"])
 @login_required
@@ -94,5 +87,3 @@ def login():
 			return redirect(url_for('index'))
 		else:
 			return render_template("login.html")
-if __name__ == '__main__':
-    app.run(debug=True)
