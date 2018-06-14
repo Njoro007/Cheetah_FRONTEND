@@ -34,7 +34,7 @@ def waterpans():
 @app.route("/apan/<string:name>", methods=['GET'])
 @login_required
 def apan(name):
-	# load local json for water pans
+	# load local jsons
 	SITE_ROOT = os.path.realpath(os.path.dirname(__file__))
 	json_url = os.path.join(SITE_ROOT, "static/files", "capacity.json")
 	data = json.load(open(json_url))

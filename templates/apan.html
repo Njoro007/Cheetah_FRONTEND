@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+{% block links %}
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='./vendor/bootstrap/css/bootstrap.min.css') }}">
+	<link rel="stylesheet" type="text/css" href="">
+    <link href="{{ url_for('static', filename='css/simple-sidebar.css') }}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/AdminLTE.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/_all-skins.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+
+{% endblock %}
+{% block title %}
+Pan
+{% endblock %}
+
+{% block body %}
+<div class="container">
+	
+<div class="row">
+	<div class="col-md-6">
+		<p>
+				<strong>Name</strong>
+				</p>
+				<p ><strong>Location</strong></p>
+				<p><strong>Max Capacity</strong></p>
+				<p><strong>Available Capacity</strong></p>
+				<p><strong>Status</strong></p>
+				<p><strong>Manager</strong></p>
+	</div>
+	<div class="col-md-6">
+		<p>{{name}}</p>
+			<p>{{location['name']}}</p>
+			<p>{{ data['max'] }} litres</p>
+			<p>{{ data['level'] }} litres</p>
+			<p class="text-green">Active</p>
+			<p>{{user['fname']}} {{user['lname']}}</p>
+	</div>
+	
+</div>
+		
+</div>
+{% endblock %}
