@@ -10,6 +10,9 @@
     <title>{% block title %} {% endblock %}</title>
 
     <!-- Bootstrap core CSS -->
+    {% block links %}
+        
+    {% endblock %}
     <link href="static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
@@ -101,6 +104,33 @@
 
     L.marker([1.2921, 36.8219]).addTo(mymap)
         .bindPopup("<b>Hello world!</b><br />I am a popup.").openPopup();
+
+    L.marker([2.2921, 36.8219]).addTo(mymap)
+        .bindPopup("<b>Hello world!</b><br />I am a popup.").openPopup();
+
+    L.marker([1.691649, 40.078125]).addTo(mymap)
+        .bindPopup("<b>Hello Guys!</b><br />I am Wajir Water pan.").openPopup();
+
+        // kajiadon -1.85238 36.77683
+    L.marker([-1.85238, 36.77683]).addTo(mymap)
+        .bindPopup("<b>Kajiado</b>").openPopup();
+    // kajiado-1
+    L.marker([-1.576991, 36.806192]).addTo(mymap)
+        .bindPopup("<b>Olooloitosh</b>").openPopup();
+    L.marker([-1.426730, 36.695671]).addTo(mymap)
+        .bindPopup("<b>Kiserian</b>").openPopup();
+   L.marker([-2.156342, 37.166432]).addTo(mymap)
+        .bindPopup("<b>Selengei</b>").openPopup();
+    L.marker([-1.967024, 36.921830]).addTo(mymap)
+        .bindPopup("<b>Entorika</b>").openPopup();
+    L.marker([1.933865, 36.511137]).addTo(mymap)
+        .bindPopup("<b>Koora</b>").openPopup();
+    L.marker([]).addTo(mymap)
+        .bindPopup("<b>Kiserian</b>").openPopup();
+    L.marker([]).addTo(mymap)
+        .bindPopup("<b>Kiserian</b>").openPopup();
+    L.marker([]).addTo(mymap)
+        .bindPopup("<b>Kiserian</b>").openPopup();
 
     L.circle([1.2921, 36.8219], 500, {
         color: 'red',

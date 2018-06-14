@@ -10,30 +10,26 @@ Pans
 	<div class="text-right">
 		<a href="{{ url_for('addpan')}}"><button class="btn btn-sm btn-success">Add</button></a></button>
 	</div>
-      <div class="row">
-        <div class="col-md-12">
+      <div>
 
           <table class="table table-hover">
-            <thead class="text-left">
               <tr>
-                <th>Name</th>
-                <th>Location</th>
-                <th>Status</th>
-                <th>Mananger</th>
-                 <th>Actions</th>
+                <td>Name</td>
+                <td>Location</td>
+                <td>Status</td>
+                <td>Mananger</td>
+                 <td>Actions</td>
               </tr>
-            </thead>
 
 			<tbody>
-              <td><strong><b>Jumanji</b></strong></td>
-			  <td><strong><b>Turkana</b></strong></td>
-              <td><strong><b>Active</b></strong></td>
-              <td><strong><b>Mr. sir</b></strong></td>
-              <td><strong><b><a href="#"><button class="btn btn-sm btn-success">View</button></a><a href="{{url_for('editpan')}}"><button class="btn btn-sm btn-info">Update</button></a><a href="#"><button class="btn btn-sm btn-danger">Deactivate</button></a></b></strong></td>
+              <td><strong><b>{{data['name']}}</b></strong></td>
+			  <td><strong><b>{{location['name']}}</b></strong></td>
+              <td><strong><b>{{data['status']}}</b></strong></td>
+              <td><strong><b>manager</b></strong></td>
+              <td><strong><b><a href="apan/{{ data['name'] }}"><button class="btn btn-sm btn-success">View</button></a><a href="{{url_for('editpan')}}"><button class="btn btn-sm btn-info">Update</button></a><a href="#"><button class="btn btn-sm btn-danger">Deactivate</button></a></b></strong></td>
            </tbody>
 
           </table>
-        </div>
       </div>
 
     </div>
