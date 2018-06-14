@@ -1,12 +1,20 @@
 {% extends "layout.html" %}
+{% block links %}
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='./vendor/bootstrap/css/bootstrap.min.css') }}">
+	<link rel="stylesheet" type="text/css" href="">
+    <link href="{{ url_for('static', filename='css/simple-sidebar.css') }}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/AdminLTE.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/_all-skins.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
 
+{% endblock %}
 {% block title %}
 Edit waterpan
 {% endblock %}
 
 {% block body %}
 <div class="container">
-	<form action="#" method="post">
+	<form action="/editpan/{{ data['name'] }}" method="post" >
 		<div class="form-group">
 			<label><strong>Pan Name</strong></label>
 			<input class="form-control" type="text" name="name" placeholder="pan name" value="{{data['name']}}">	

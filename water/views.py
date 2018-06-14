@@ -17,7 +17,11 @@ def index():
 @app.route("/proposals")
 @login_required
 def proposals():
-	return render_template("proposals.html")
+# load local json for water pans
+	SITE_ROOT = os.path.realpath(os.path.dirname(__file__))
+	json_url = os.path.join(SITE_ROOT, "static/files", "panProposals.json")
+	data = json.load(open(json_url))
+	return render_template("proposals.html", data=data)
 
 @app.route("/waterpans")
 @login_required
@@ -56,16 +60,26 @@ def addpan():
 	elif request.method == "GET":
 		return render_template("addpan.html")
 
-@app.route("/editpan", methods=['GET', 'POST'])
+@app.route("/editpan/<string:name>", methods=['GET', 'POST'])
 @login_required
-def editpan():
+def editpan(name):
+	# load local json for water pans
+	SITE_ROOT = os.path.realpath(os.path.dirname(__file__))
+	
+	json_url = os.path.join(SITE_ROOT, "static/files", "waterpan.json")
+	data = json.load(open(json_url))
 	if request.method == "GET":
-		# load local json for water pans
-		SITE_ROOT = os.path.realpath(os.path.dirname(__file__))
-		json_url = os.path.join(SITE_ROOT, "static/files", "waterpan.json")
-		data = json.load(open(json_url))
 		return render_template("editpan.html", data=data)
-	return render_template("editpan.html")
+	elif request.method == "POST":
+		data['name'] = request.form['name']
+		data['manager'] = request.form['manager']
+		data['capacity'] = request.form['capacity']
+
+		# rewrite the whole JSON file with updated dictionary
+		json_url = os.path.join(SITE_ROOT, "static/files", "waterpan.json")
+		with open(json_url, 'w') as json_File:
+			json.dump(data, json_File)
+			return redirect(url_for("index"))
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -87,3 +101,35 @@ def login():
 			return redirect(url_for('index'))
 		else:
 			return render_template("login.html")
+
+@app.route("/deactivate/<string:name>")
+def deactivate(name):
+	# load local json for water pans
+	SITE_ROOT = os.path.realpath(os.path.dirname(__file__))
+	
+	json_url = os.path.join(SITE_ROOT, "static/files", "waterpan.json")
+	data = json.load(open(json_url))
+
+	data['status'] = 'Deactivated'
+
+	# rewrite the whole JSON file with updated dictionary
+	json_url = os.path.join(SITE_ROOT, "static/files", "waterpan.json")
+	with open(json_url, 'w') as json_File:
+		json.dump(data, json_File)
+		return redirect(url_for("index"))
+
+@app.route("/activate/<string:name>")
+def activate(name):
+	# load local json for water pans
+	SITE_ROOT = os.path.realpath(os.path.dirname(__file__))
+	
+	json_url = os.path.join(SITE_ROOT, "static/files", "waterpan.json")
+	data = json.load(open(json_url))
+
+	data['status'] = 'Active'
+
+	# rewrite the whole JSON file with updated dictionary
+	json_url = os.path.join(SITE_ROOT, "static/files", "waterpan.json")
+	with open(json_url, 'w') as json_File:
+		json.dump(data, json_File)
+		return redirect(url_for("index"))
